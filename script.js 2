@@ -1,0 +1,10 @@
+function vericar (){
+    var data = new Date()
+    var ano = data.getFullYear()
+    var fano = document.getElementById('textano')
+    var res = document.querySelector('div#res')
+    if (fano.value.length == 0 // fano.value > ano) {
+        window.alert('[ERRO] verique os dados e tente novamente!)
+    } else { 
+        var fsex = document.getElementByName('radsex')
+    }

@@ -41,13 +41,25 @@
 </head>
 <body>
   <header>
-    <h1> Título</h1>
+    <h1> Verificador de Idade</h1>
   </header>
   <section>
     <div>
-    Opa
+          <p>Ano de Nascimento: 
+            <input type="number" name="txtano" id="txtano" min="0">
+          </p>
+          <p>Sexo:
+            <input type="radio" name="radsex" id="masc" checked>
+            <label for="masc">Masculino</label>
+            <input type="radio" name="radsex" id="fem"
+            <label for="fem">Feminino</label>
+          </p>
+          <P>
+            <input type="button" value="Vericar" onclick="verificar()">
+          </P>
     </div>
-    <div>
+    <div id="res">
+      Preencha os dados acima para ver o resultado!
 
     </div>
   </section> 
@@ -55,7 +67,70 @@
     <p>&copy; Sara Oliveira</p>
   </footer>
   <script>
+    function verificar() {
+      var data = new Date()
+      var ano = data.getFullYear()
+      var fano = document.getElementById('txtano')
+      var res = document.querySelector('div#res')
+
+      if (fano.value.length == 0 || Number(fano.value) > ano) {
+        window.alert('[ERRO] Verifique os dados e tente vovamente!')
+
+      } else {
+        var fsex = document.getElementsByName('radsex')
+        var idade = ano - Number(fano.value)
+        var gênero = ''
+        var img = document.createElement('img')
+        img.setAttribute('id', 'foto')
+        
+      if (fsex[0].checked) {
+        gênero = 'Homem'
+        if (idade >=0 && idade < 10){
+          //Criança
+          img.setAttribute('src', 'foto-BebeMenino.png')
+
+        } else if (idade < 20) {
+          //Jovem
+          img.setAttribute('src', 'foto-HomemJovem.png')
+      
+        } else if (idade < 50){
+          //Adulto
+          img.setAttribute('src', 'foto-HomemAdulto.png')
+
+        } else {
+          //Idoso
+          img.setAttribute('src', 'foto-IdosoHomem.png')
+        }
+
+      } else if (fsex[1].checked) {
+        gênero = 'Mulher'   
+        if (idade >=0 && idade < 10){
+          //Criança
+          img.setAttribute('src', 'foto-BebeMenina.png')
+
+        } else if (idade < 20) {
+          //Jovem
+          img.setAttribute('src', 'foto-MulherJovem.png')
+
+        } else if (idade < 50){
+          //Adulto
+          img.setAttribute('src', 'foto-MulherAdulta.png')
+
+        } else {
+          //Idoso
+          img.setAttribute('src', 'foto-IdosaMulher.png')
+        }   
+  
+      }
+      res.style.textAlign = 'center'
+      res.innerHTML = `Detectamos ${gênero} com ${idade} anos.`
+      res.appendChild(img)
+
+    }
+  }
     
 </script>
 </body>
 </html>
+
+}
